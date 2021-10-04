@@ -3,7 +3,9 @@ port: 80
 worlds:
   - id: 0
     name: Localhost
-    ip: 127.0.0.1
-    port: 7171
+    ip-protected: 127.0.0.1
+    ip-unprotected: 127.0.0.1
+    port-protected: 7171
+    port-unprotected: 7171
     location: EUR
     pvp-type: 0

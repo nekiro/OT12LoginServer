@@ -66,6 +66,17 @@ vocation_to_name = {
     8: "Elite Knight",
 }
 
+config_key_to_world_key = {
+    "id": "id",
+    "name": "name",
+    "ip-protected": "externaladdressprotected",
+    "ip-unprotected": "externaladdressunprotected",
+    "port-protected": "externalportprotected",
+    "port-unprotected": "externalportunprotected",
+    "location": "location",
+    "pvp-type": "pvptype"
+}
+
 def load_config_json() -> None:
     try:
         stream = open("config.yaml", 'r')
@@ -79,14 +90,11 @@ def load_config_json() -> None:
     # update default values in response model
     for world_config in config["worlds"]:
         game_world = game_world_template.copy()
-        game_world["id"] = world_config["id"]
-        game_world["name"] = world_config["name"]
-        game_world["externaladdressprotected"] = world_config["ip"]
-        game_world["externaladdressunprotected"] = world_config["ip"]
-        game_world["externalportprotected"] = world_config["port"]
-        game_world["externalportunprotected"] = world_config["port"]
-        game_world["location"] = world_config["location"]
-        game_world["pvptype"] = world_config["pvp-type"]
+
+        for key, val in world_config.items():
+            if key in config_key_to_world_key:
+                game_world[config_key_to_world_key[key]] = val
+
         login_response["playdata"]["worlds"].append(game_world)
 
     print("Loaded config")
