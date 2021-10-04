@@ -1,0 +1,9 @@
+host: 127.0.0.1
+port: 80
+worlds:
+  - id: 0
+    name: Localhost
+    ip: 127.0.0.1
+    port: 7171
+    location: EUR
+    pvp-type: 0
