@@ -36,13 +36,18 @@ if __name__ == '__main__':
 
     app = tornado.web.Application([(r"/login", MainHandler, dict(login_server=login_server))])
 
+    conf = models.config.get("server", None)
+    if not conf:
+        print("Invalid server configuration config.yml")
+        exit()
+
     try:
-        app.listen(80)
+        app.listen(conf.get("port", 80))
     except Exception as err:
         print(err)
         exit()
 
-    print("Started listening at {}:{}".format(models.config["host"], models.config["port"]))
+    print("Started listening at {}:{}".format(conf.get("host", "127.0.0.1"), conf.get("port", 80)))
 
     try:
         IOLoop.instance().start()

@@ -85,9 +85,17 @@ def load_config_json() -> None:
         stream.close()
     except yaml.YAMLError as exc:
         print(exc)
-        return
+        exit()
 
-    # update default values in response model
+    if not config:
+        print("invalid config.yml")
+        exit()
+
+    if not "worlds" in config:
+        print("missing worlds configuration in config.yml")
+        exit()
+
+    # worlds
     for world_config in config["worlds"]:
         game_world = game_world_template.copy()
 

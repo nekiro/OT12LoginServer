@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector import Error as MySqlError
+import models
 
 class Database:
     def __init__(self):
@@ -7,7 +8,8 @@ class Database:
 
     def open(self):
         try:
-            self.cn = mysql.connector.connect(host="127.0.0.1", user="root", password="", database="8.0")
+            conf = models.config["database"]
+            self.cn = mysql.connector.connect(host=conf.get("host", "127.0.0.1"), user=conf.get("user", "root"), password=conf.get("password", ""), database=conf.get("name", ""), port=conf.get("port", 3306))
             return True
         except MySqlError as err:
             print(err)

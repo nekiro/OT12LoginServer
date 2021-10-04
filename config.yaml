@@ -1,11 +1,18 @@
-host: 127.0.0.1
-port: 80
+server:
+  host: 127.0.0.1
+  port: 80
+database:
+  host: "127.0.0.1"
+  port: 3306
+  name: "8.0"
+  user: "root"
+  password: ""
 worlds:
   - id: 0
-    name: Localhost
-    ip-protected: 127.0.0.1
-    ip-unprotected: 127.0.0.1
+    name: "Localhost"
+    ip-protected: "127.0.0.1"
+    ip-unprotected: "127.0.0.1"
     port-protected: 7171
     port-unprotected: 7171
-    location: EUR
+    location: "EUR"
     pvp-type: 0
