@@ -1,0 +1,134 @@
+Structure 12.51
+
+Tibia Client Login Request
+POST
+{
+	"email":"",
+	"password":"",
+	"stayloggedin":true,
+	"type":"login"
+}
+
+Login Server Login Response
+{
+    "session": {
+        "sessionkey": "sessionKey",
+        "lastlogintime": 1593881964,
+        "ispremium": false,
+        "premiumuntil": 1593110465,
+        "status": "active",
+        "returnernotification": false,
+        "showrewardnews": true,
+        "isreturner": true,
+        "fpstracking": false,
+        "optiontracking": false,
+        "tournamentticketpurchasestate": 0,
+        "tournamentcyclephase": 2
+    },
+    "playdata": {
+        "worlds": [
+            {
+                "id": 0,
+                "name": "Antica",
+                "externaladdressprotected": "IP",
+                "externalportprotected": 7171,
+                "externaladdressunprotected": "IP",
+                "externalportunprotected": 7171,
+                "previewstate": 0,
+                "location": "EUR",
+                "anticheatprotection": true,
+                "pvptype": 0,
+                "istournamentworld": false,
+                "restrictedstore": false
+            }
+        ],
+        "characters": [
+            {
+                "worldid": 0,
+                "name": "Name",
+                "level": 38,
+                "vocation": "Knight",
+                "ismale": false,
+                "ishidden": false,
+                "ismaincharacter": false,
+                "tutorial": false,
+                "outfitid": 139,
+                "headcolor": 95,
+                "torsocolor": 38,
+                "legscolor": 94,
+                "detailcolor": 115,
+                "addonsflags": 0,
+                "istournamentparticipant": false
+            },
+            {
+                "worldid": 0,
+                "name": "Name",
+                "level": 28,
+                "vocation": "Sorcerer",
+                "ismale": true,
+                "ishidden": false,
+                "ismaincharacter": true,
+                "tutorial": false,
+                "outfitid": 128,
+                "headcolor": 0,
+                "torsocolor": 114,
+                "legscolor": 114,
+                "detailcolor": 114,
+                "addonsflags": 0,
+                "istournamentparticipant": false
+            }
+        ]
+    }
+}
+
+Client Web Service
+
+POST
+{"type":"boostedcreature"}
+
+RESPONSE
+{
+    "raceid": 1496
+}
+
+POST
+{"type":"cacheinfo"}
+refreshed each 30 seconds
+
+RESPONSE
+{
+    "playersonline": 19505,
+    "twitchstreams": 191,
+    "twitchviewer": 7977,
+    "gamingyoutubestreams": 6,
+    "gamingyoutubeviewer": 14
+}
+
+POST
+{"type":"eventschedule"}
+
+RESPONSE
+{
+	"eventlist": [
+		{
+            "startdate": 1596268800,
+            "enddate": 1598947200,
+            "colorlight": "#7a1b34",
+            "colordark": "#64162b",
+            "name": "Hot Cuisine Month",
+            "description": "If you are a real gourmet, ask Jean Pierre in the Darama desert for some delicious and exceptional recipes. August is undoubtedly the month of hot cuisine! Bon appetit!",
+            "displaypriority": 4,
+            "isseasonal": true
+        }
+	]
+}
+
+RANDOM HINTS URL
+https://static.tibia.com/hints.json
+GET?
+[
+  {
+    "title": "Genesis",
+    "richText": "<table><tbody><tr><td><p style=\"margin-right: 5px;\"><img src=\"https://static.tibia.com/images/news/rh_lore.png\" width=\"80\" height=\"80\" /></p></td><td><p>To this day, nobody knows precisely what it was that caused it. Perhaps the power that had been spent lured another entity out of the void, or it might be that it simply awoke another divine entity from its slumber. Some even claim that in some mysterious way the power that had been spent by Uman and Fardos actually created a new entity.</p></td></tr></tbody></table>"
+  }
+]

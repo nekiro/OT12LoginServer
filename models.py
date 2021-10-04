@@ -66,7 +66,7 @@ vocation_to_name = {
     8: "Elite Knight",
 }
 
-def load_config_json() -> dict:
+def load_config_json() -> None:
     try:
         stream = open("config.yaml", 'r')
         global config

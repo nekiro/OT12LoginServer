@@ -5,7 +5,7 @@ import json
 import models
 
 class MainHandler(tornado.web.RequestHandler):
-    def initialize(self, login_server) -> None:
+    def initialize(self, login_server: LoginServer) -> None:
         self.login_server = login_server
 
     def post(self) -> None:

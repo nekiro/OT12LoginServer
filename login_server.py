@@ -1,6 +1,7 @@
 from database_manager import Database
 import json
 from hashlib import sha1
+from main import MainHandler
 from models import login_character, login_response, vocation_to_name, load_config_json
 import copy
 import datetime
@@ -13,7 +14,7 @@ class LoginServer:
         self.db = Database()
         return self.db.open()
     
-    def process_login(self, email, password, frame) -> None:
+    def process_login(self, email: str, password: str, frame: MainHandler) -> None:
         result = self.db.store_query("SELECT `id`, `premium_ends_at` FROM `accounts` WHERE `name` = {} AND `password` = {} LIMIT 1".format(self.db.escape_string(email), self.db.escape_string(LoginServer.sha1_string(password))))
 
         if not result:
@@ -21,8 +22,8 @@ class LoginServer:
             return
 
         self.send_character_list(result[0], frame)
-    
-    def send_character_list(self, account_data, frame) -> None:
+
+    def send_character_list(self, account_data: list, frame: MainHandler) -> None:
         response = copy.deepcopy(login_response)
 
         response["session"]["premiumuntil"] = account_data[1]
@@ -48,7 +49,7 @@ class LoginServer:
         frame.write(response)
 
     @staticmethod
-    def sha1_string(string) -> str:
+    def sha1_string(string: str) -> str:
         sha = sha1()
         sha.update(string.encode("utf-8"))
         return sha.hexdigest()
