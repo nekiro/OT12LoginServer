@@ -28,7 +28,7 @@ class MainHandler(tornado.web.RequestHandler):
         except Exception as err:
             print(err)
 
-if __name__ == '__main__':
+def main():
     login_server = LoginServer()
     if not login_server.start():
         print("There was a problem with connecting to database.")
@@ -53,3 +53,6 @@ if __name__ == '__main__':
         IOLoop.instance().start()
     except KeyboardInterrupt:
         IOLoop.instance().stop()
+
+if __name__ == '__main__':
+    main()
