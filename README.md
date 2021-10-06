@@ -11,7 +11,7 @@ Small, portable and cross-platform HTTP login server written in python.
 
 OT12LoginServer requires [Python](https://www.python.org/) 3.7+ to run
 
-Main depedencies:
+Main dependencies:
 - Tornado
 - PyYAML
 - mysql
