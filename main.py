@@ -8,14 +8,20 @@ class MainHandler(tornado.web.RequestHandler):
     def initialize(self, login_server: LoginServer) -> None:
         self.login_server = login_server
 
-    def post(self) -> None:
+    def post(self: "MainHandler") -> None:
         try:
             request = json.loads(self.request.body)
-            type = request.get("type", "")
+            type = request.get("type")
+            if type is None:
+                return
+
             if type == "login":
-                email = request.get("email", "")
-                password = request.get("password", "")
-                if email is None or password is None:
+                email = request.get("email")
+                if email is None:
+                    return
+
+                password = request.get("password")
+                if password is None:
                     return
 
                 self.login_server.process_login(email, password, self)
