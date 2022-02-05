@@ -21,7 +21,7 @@ class LoginServer:
         result = self.db.store_query("SELECT `id`, `premium_ends_at` FROM `accounts` WHERE `name` = {} AND `password` = {} LIMIT 1".format(self.db.escape_string(email), self.db.escape_string(LoginServer.sha1_string(password))))
 
         if not result:
-            frame.write(json.dumps({"ErrorCode": 3, "ErrorMessage": "Account email address or password is not correct."}))
+            frame.write(json.dumps({"errorCode": 3, "errorMessage": "Account email address or password is not correct."}))
             return
 
         self.send_character_list(result[0], frame)
