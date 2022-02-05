@@ -24,7 +24,11 @@ class MainHandler(tornado.web.RequestHandler):
                 if password is None:
                     return
 
-                self.login_server.process_login(email, password, self)
+                token = request.get("token")
+                if token is None:
+                    token = ""
+
+                self.login_server.process_login(email, password, token, self)
             elif type == "boostedcreature":
                 print("requesting boosted creature")
             elif type == "cacheinfo":

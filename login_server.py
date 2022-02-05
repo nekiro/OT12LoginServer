@@ -17,20 +17,23 @@ class LoginServer:
         self.db = Database()
         return self.db.open()
     
-    def process_login(self, email: str, password: str, frame: "MainHandler") -> None:
-        result = self.db.store_query("SELECT `id`, `premium_ends_at` FROM `accounts` WHERE `name` = {} AND `password` = {} LIMIT 1".format(self.db.escape_string(email), self.db.escape_string(LoginServer.sha1_string(password))))
+    def process_login(self, email: str, password: str, token: str, frame: "MainHandler") -> None:
+        print("Processing login request...")
 
+        result = self.db.store_query("SELECT `id`, `premium_ends_at` FROM `accounts` WHERE `name` = {} AND `password` = {} LIMIT 1".format(self.db.escape_string(email), self.db.escape_string(LoginServer.sha1_string(password))))
         if not result:
             frame.write(json.dumps({"errorCode": 3, "errorMessage": "Account email address or password is not correct."}))
             return
 
-        self.send_character_list(result[0], frame)
+        self.send_character_list(result[0], email, password, token, frame)
 
-    def send_character_list(self, account_data: list, frame: "MainHandler") -> None:
+    def send_character_list(self, account_data: list, email: str, password: str, token: str, frame: "MainHandler") -> None:
         response = copy.deepcopy(login_response)
 
+        response["session"]["sessionkey"] = "{}\n{}\n{}\n{}\n".format(email, password, token, 0)
         response["session"]["premiumuntil"] = account_data[1]
         response["session"]["ispremium"] = account_data[1] >= datetime.datetime.now(datetime.timezone.utc).timestamp()
+        response["session"]["premiumuntil"] = account_data[1]
         #response["session"]["lastlogintime"] = account_data[2]
 
         result = self.db.store_query("SELECT `name`, `level`, `vocation`, `sex`, `looktype`, `lookhead`, `lookbody`, `looklegs`, `lookfeet`, `lookaddons` FROM `players` WHERE `account_id` = {}".format(account_data[0]))
@@ -46,7 +49,7 @@ class LoginServer:
                 char_response["legscolor"] = row[6]
                 char_response["detailcolor"] = row[7]
                 char_response["addonsflags"] = row[8]
-                # charResponse["ishidden"] = true not handled inside of database
+                char_response["ishidden"] = False
                 response["playdata"]["characters"].append(char_response)
 
         frame.write(response)

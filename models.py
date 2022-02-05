@@ -13,7 +13,6 @@ login_response = {
         "fpstracking": False,
         "optiontracking": False,
         "tournamentticketpurchasestate": 0,
-        "tournamentcyclephase": 2
     },
     "playdata": {
         "worlds": [],
@@ -24,10 +23,12 @@ login_response = {
 game_world_template = {
     "id": 0,
     "name": "World 1",
+    "externaladdress": "127.0.0.1",
+    "externalport": 7172,
     "externaladdressprotected": "127.0.0.1",
-    "externalportprotected": 7171,
+    "externalportprotected": 7172,
     "externaladdressunprotected": "127.0.0.1",
-    "externalportunprotected": 7171,
+    "externalportunprotected": 7172,
     "previewstate": 0,
     "location": "EUR",
     "anticheatprotection": False,
@@ -51,7 +52,8 @@ login_character = {
     "legscolor": 94,
     "detailcolor": 115,
     "addonsflags": 0,
-    "istournamentparticipant": False
+    "istournamentparticipant": False,
+    "remainingdailytournamentplaytime": 0
 }
 
 vocation_to_name = {
