@@ -1,6 +1,7 @@
 # OT12LoginServer
 
 Small, portable and cross-platform HTTP login server written in python.
+Compatible with protocol version 12.85.
 
 ## Features
 
