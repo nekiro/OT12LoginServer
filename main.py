@@ -44,7 +44,12 @@ def main():
         print("There was a problem with connecting to database.")
         exit()
 
-    app = tornado.web.Application([(r"/login", MainHandler, dict(login_server=login_server))])
+    app = tornado.web.Application(
+        [
+            (r"/login", MainHandler, dict(login_server=login_server)),
+            (r"/login.php", MainHandler, dict(login_server=login_server))
+        ]
+    )
 
     conf = models.config.get("server", None)
     if not conf:
