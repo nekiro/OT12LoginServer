@@ -4,15 +4,13 @@ server:
 database:
   host: "127.0.0.1"
   port: 3306
-  name: "8.0"
+  name: "forgottenserver"
   user: "root"
   password: ""
 worlds:
   - id: 0
     name: "Localhost"
-    ip-protected: "127.0.0.1"
-    ip-unprotected: "127.0.0.1"
-    port-protected: 7171
-    port-unprotected: 7171
+    ip: "127.0.0.1"
+    port: 7171
     location: "EUR"
     pvp-type: 0
