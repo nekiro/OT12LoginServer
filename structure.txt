@@ -5,6 +5,7 @@ POST
 {
 	"email":"",
 	"password":"",
+    "token": "",
 	"stayloggedin":true,
 	"type":"login"
 }
@@ -30,10 +31,8 @@ Login Server Login Response
             {
                 "id": 0,
                 "name": "Antica",
-                "externaladdressprotected": "IP",
-                "externalportprotected": 7171,
-                "externaladdressunprotected": "IP",
-                "externalportunprotected": 7171,
+                "externaladdress": "IP",
+                "externalport": 7172,
                 "previewstate": 0,
                 "location": "EUR",
                 "anticheatprotection": true,
