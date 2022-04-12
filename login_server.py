@@ -46,9 +46,10 @@ class LoginServer:
                 char_response["ismale"] = row[3] == 1
                 char_response["outfitid"] = row[4]
                 char_response["headcolor"] = row[5]
-                char_response["legscolor"] = row[6]
-                char_response["detailcolor"] = row[7]
-                char_response["addonsflags"] = row[8]
+                char_response["torsocolor"] = row[6]
+                char_response["legscolor"] = row[7]
+                char_response["detailcolor"] = row[8]
+                char_response["addonsflags"] = row[9]
                 char_response["ishidden"] = False
                 response["playdata"]["characters"].append(char_response)
 
